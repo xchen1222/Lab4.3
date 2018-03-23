@@ -1,4 +1,5 @@
-
+import java.util.ArrayList;
+import java.util.List;
 	
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -21,6 +22,10 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
+		List<String> scores = BackEnd.readScores("Scores.txt");
+		for (String x : scores) {
+			System.out.println(x);
+		}
 		launch(args);
 	}
 }
