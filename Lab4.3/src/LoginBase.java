@@ -102,6 +102,15 @@ public class LoginBase extends Application {
                 System.out.println("button3 pressed");
             }
         });
+        btn4.setOnAction(new EventHandler<ActionEvent>() {
+          	 
+            @Override
+            public void handle(ActionEvent e) {
+                actiontarget.setFill(Color.FIREBRICK);
+                actiontarget.setText("Sign in button pressed");
+                System.out.println("button4 pressed");
+            }
+        });
         Scene S1 = new Scene (grid,500,500);
         primaryStage.setScene(S1);
         
