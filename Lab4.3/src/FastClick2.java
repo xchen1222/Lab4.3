@@ -22,7 +22,10 @@ import javafx.scene.text.Text;
 
 
 public class FastClick2 extends Application {
-	long timeStep = 0 ; 
+	 boolean scoring = true ;  
+	 long timeStep = 0 ; 
+	
+	
 	@Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("2Fast2Click");
@@ -43,42 +46,42 @@ public class FastClick2 extends Application {
       
         
         Button btn = new Button("ME");
-      //  btnDelete.setMinWidth(80.0);
-       // btnDelete.setPrefWidth(80.0);
-       // btnDelete.setMaxWidth(80.0);
+        
+        btn.setMinSize(250.0, 250.0);
         HBox hbBtn = new HBox(10);
         hbBtn.setAlignment(Pos.CENTER);
         hbBtn.getChildren().add(btn);
         grid.add(hbBtn, 1, 4); 
         
-        timeStep = System.nanoTime() + 10000L ; 
-        new AnimationTimer() 
-        {
+        
+        timeStep = System.currentTimeMillis()  ; 
+        new AnimationTimer() {
         	public void handle(long now)
         	{
         		if (now > timeStep) 
         		{
-        			timeStep = now + 10000L;
-        			//scoring = !scoring;
+        			timeStep = now ;
+        			scoring = !scoring;
         		}
-        	/*	if (!scoring)
+        		if (!scoring)
         		{
         			btn.setText("Scammer");
-        		}*/
+        		}
         		else {
         			btn.setText("STOP");
         		}
-        	//	txt.setText("Score:" + Integer.toString(score));
+        		//txt.setText("Score:" + Integer.toString(score));
         	}
-        } ;
+        }.start();
       
         final Text actiontarget = new Text();
         grid.add(actiontarget, 1, 6);
         
         btn.setOnAction(new EventHandler<ActionEvent>() {
-        	int score = 0;  boolean scoring = true ;  
+        	int score = 0;  
             @Override
             public void handle(ActionEvent e) {
+            	
             	
             	if (scoring) {
             		score++;
@@ -88,7 +91,7 @@ public class FastClick2 extends Application {
             	}
             
                 actiontarget.setFill(Color.BLACK) ;
-                actiontarget.setText("Score: " + score + "\nTIMELEFT:" + timeStep) ;
+                actiontarget.setText("Score: " + score + "\nTIMELEFT: " + timeStep) ;
                 actiontarget.setFont(Font.font("Tahoma", FontWeight.NORMAL,20)); 
                 System.out.println(score);
             }
